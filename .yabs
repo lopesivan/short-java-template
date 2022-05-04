@@ -1,30 +1,55 @@
 -- programa em java
 return {
-languages = {
-    java = {
-        default_task = require("yabs").first_available("make"),
-    }
-}, -- languages
+	languages = {
+		java = {
+			default_task = require("yabs").first_available("make"),
+		}
+	}, -- languages
 
--- Default tasks
-tasks = {
-    make_class = {
-        command = "make HelloWorldApp",
-        output = "terminal",
-    },
-    make_run_class = {
-        command = "java -classpath bin HelloWorldApp",
-        output = "terminal",
-    },
+	-- Default tasks
+	tasks = {
+		make_class = {
+			command = "make HelloWorldApp",
+			output = "terminal",
+		},
+		make_run_class = {
+			command = "java -classpath bin HelloWorldApp",
+			output = "terminal",
+		},
 
-    make_jar = {
-        command = "make HelloWorldApp.jar",
-        output = "terminal",
-    },
-    make_run_jar = {
-        command = "java -jar jars/HelloWorldApp.jar",
-        output = "terminal",
-    },
+		make_jar = {
+			command = "make HelloWorldApp.jar",
+			output = "terminal",
+		},
+		make_run_jar = {
+			command = "java -jar jars/HelloWorldApp.jar",
+			output = "terminal",
+		},
+
+		make_and_run = { -- Setting the type to lua means the command
+		-- is a lua function
+		command = function()
+			-- The following api can be used to run a task when a
+			-- previous one finishes
+			-- WARNING: this api is experimental and subject to
+			-- changes
+			require('yabs'):run_task('make_class', {
+				-- Job here is a plenary.job object that represents
+				-- the finished task, read more about it here:
+				-- https://github.com/nvim-lua/plenary.nvim#plenaryjob
+				on_exit = function(Job, exit_code)
+					-- The parameters `Job` and `exit_code` are optional,
+					-- you can omit extra arguments or
+					-- skip some of them using _ for the name
+					if exit_code == 0 then
+						require('yabs').languages.c:run_task('make_run_class')
+					end
+				end,
+			})
+		end,
+		type = 'lua',
+	},
+
 }, -- tasks
 
 }
