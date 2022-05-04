@@ -29,3 +29,11 @@ jar cfm HelloWorldApp.jar manifest.mf HelloWorldApp.class
 java -jar HelloWorldApp.jar
 ```
 
+
+
+```
+javac hello_world_app.java
+jar cfm hello_world_app.jar manifest.mf HelloWorldApp.class
+java -jar hello_world_app.jar
+```
+
