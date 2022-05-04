@@ -8,7 +8,7 @@
 
 ```
     make HelloWorldApp
-    java bin/HelloWorldApp
+    java -classpath bin HelloWorldApp
 ```
 
 ### Jar:
