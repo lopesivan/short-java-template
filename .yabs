@@ -1,0 +1,30 @@
+-- programa em java
+return {
+languages = {
+    java = {
+        default_task = require("yabs").first_available("make"),
+    }
+}, -- languages
+
+-- Default tasks
+tasks = {
+    make_class = {
+        command = "make HelloWorldApp",
+        output = "terminal",
+    },
+    make_run_class = {
+        command = "java -classpath bin HelloWorldApp",
+        output = "terminal",
+    },
+
+    make_jar = {
+        command = "make HelloWorldApp.jar",
+        output = "terminal",
+    },
+    make_run_jar = {
+        command = "java -jar jars/HelloWorldApp.jar",
+        output = "terminal",
+    },
+}, -- tasks
+
+}
