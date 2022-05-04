@@ -7,14 +7,14 @@
 ### Class:
 
 ```
-    make HelloWorld
-    java bin/HelloWorld
+    make HelloWorldApp
+    java bin/HelloWorldApp
 ```
 
 ### Jar:
 
 ```
-    make HelloWorld.jar
-    java -jar jars/HelloWorld.jar
+    make HelloWorldApp.jar
+    java -jar jars/HelloWorldApp.jar
 ```
 
