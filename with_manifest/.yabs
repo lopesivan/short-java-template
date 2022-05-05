@@ -1,0 +1,29 @@
+-- programa em lua
+return {
+
+	languages = {
+
+		java = {
+			tasks = {
+				build = {
+					command = function()
+						vim.fn.system("javac hello_world_app.java")
+						vim.fn.system("jar cfm hello_world_app.jar manifest.mf HelloWorldApp.class")
+					end,
+					condition = require("yabs.conditions").file_exists("manifest.mf"),
+					type = "lua",
+				},
+				run ={
+					command = "java -jar hello_world_app.jar",
+					output = "quickfix",
+				},
+				clean ={
+					command = "rm hello_world_app.jar HelloWorldApp.class",
+					output = "quickfix",
+				},
+			},
+		}
+	},
+
+	tasks = {}, -- tasks
+}
